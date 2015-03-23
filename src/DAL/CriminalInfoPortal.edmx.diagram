@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8d97d9a77147448096c165f4f9c9ca5f" Name="Diagram1">
+        <EntityTypeShape EntityType="CrimePortalModel.Address" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrimePortalModel.City" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrimePortalModel.Country" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrimePortalModel.County" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrimePortalModel.CriminalActivityRecord" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrimePortalModel.CriminalRecordSource" Width="1.5" PointX="9.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrimePortalModel.State" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrimePortalModel.StateCriminalCodeDomain" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrimePortalModel.User" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrimePortalModel.UserAddress" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="CrimePortalModel.FK_UserAddess_AddressId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrimePortalModel.FK_City_StateId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrimePortalModel.FK_CriminalActivity_City" ManuallyRouted="false" />
+        <AssociationConnector Association="CrimePortalModel.FK_State_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="CrimePortalModel.FK_CountyState" ManuallyRouted="false" />
+        <AssociationConnector Association="CrimePortalModel.FK_CriminalActivity_County" ManuallyRouted="false" />
+        <AssociationConnector Association="CrimePortalModel.FK_LastProcessedCriminalRecord" ManuallyRouted="false" />
+        <AssociationConnector Association="CrimePortalModel.FK_UserAddess_UserId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

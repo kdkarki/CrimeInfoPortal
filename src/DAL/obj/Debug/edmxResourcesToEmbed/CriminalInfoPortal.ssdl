@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CrimePortalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+  <EntityContainer Name="CrimePortalModelStoreContainer">
+    <EntitySet Name="Address" EntityType="CrimePortalModel.Store.Address" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="City" EntityType="CrimePortalModel.Store.City" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Country" EntityType="CrimePortalModel.Store.Country" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="County" EntityType="CrimePortalModel.Store.County" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CriminalActivityRecord" EntityType="CrimePortalModel.Store.CriminalActivityRecord" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CriminalRecordSource" EntityType="CrimePortalModel.Store.CriminalRecordSource" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="State" EntityType="CrimePortalModel.Store.State" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StateCriminalCodeDomain" EntityType="CrimePortalModel.Store.StateCriminalCodeDomain" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="CrimePortalModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserAddress" EntityType="CrimePortalModel.Store.UserAddress" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_City_StateId" Association="CrimePortalModel.Store.FK_City_StateId">
+      <End Role="State" EntitySet="State" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CountyState" Association="CrimePortalModel.Store.FK_CountyState">
+      <End Role="State" EntitySet="State" />
+      <End Role="County" EntitySet="County" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CriminalActivity_City" Association="CrimePortalModel.Store.FK_CriminalActivity_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="CriminalActivityRecord" EntitySet="CriminalActivityRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CriminalActivity_County" Association="CrimePortalModel.Store.FK_CriminalActivity_County">
+      <End Role="County" EntitySet="County" />
+      <End Role="CriminalActivityRecord" EntitySet="CriminalActivityRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LastProcessedCriminalRecord" Association="CrimePortalModel.Store.FK_LastProcessedCriminalRecord">
+      <End Role="CriminalActivityRecord" EntitySet="CriminalActivityRecord" />
+      <End Role="CriminalRecordSource" EntitySet="CriminalRecordSource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_State_Country" Association="CrimePortalModel.Store.FK_State_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="State" EntitySet="State" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAddess_AddressId" Association="CrimePortalModel.Store.FK_UserAddess_AddressId">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="UserAddress" EntitySet="UserAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAddess_UserId" Association="CrimePortalModel.Store.FK_UserAddess_UserId">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserAddress" EntitySet="UserAddress" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="CountyId" Type="int" />
+    <Property Name="Zipcode" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StateID" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="CountryCode" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="County">
+    <Key>
+      <PropertyRef Name="CountyID" />
+    </Key>
+    <Property Name="CountyID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StateID" Type="int" Nullable="false" />
+    <Property Name="County" Type="nvarchar" MaxLength="255" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="CriminalActivityRecord">
+    <Key>
+      <PropertyRef Name="RecordId" />
+    </Key>
+    <Property Name="RecordId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Age" Type="tinyint" Nullable="false" />
+    <Property Name="DateArrested" Type="datetime" Nullable="false" />
+    <Property Name="ChargeCode" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="256" />
+    <Property Name="DateReported" Type="date" Nullable="false" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="CountyId" Type="int" />
+  </EntityType>
+  <EntityType Name="CriminalRecordSource">
+    <Key>
+      <PropertyRef Name="SourceId" />
+    </Key>
+    <Property Name="SourceId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="BaseUrl" Type="varchar" Nullable="false" MaxLength="1024" />
+    <Property Name="SchedulingFrequency" Type="smallint" Nullable="false" />
+    <Property Name="LastAccessDate" Type="datetime" Nullable="false" />
+    <Property Name="LastAccessRecordId" Type="bigint" />
+    <Property Name="CountyId" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="IsOfficial" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateID" />
+    </Key>
+    <Property Name="StateID" Type="int" Nullable="false" />
+    <Property Name="CountryCode" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="StateCode" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="StateCriminalCodeDomain">
+    <Key>
+      <PropertyRef Name="StateId" />
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="Code" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="256" />
+    <Property Name="CriminalEventType" Type="varchar" Nullable="false" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserAddress">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="AddressId" Type="bigint" Nullable="false" />
+    <Property Name="IsPreferred" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_City_StateId">
+    <End Role="State" Type="CrimePortalModel.Store.State" Multiplicity="0..1" />
+    <End Role="City" Type="CrimePortalModel.Store.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CountyState">
+    <End Role="State" Type="CrimePortalModel.Store.State" Multiplicity="1" />
+    <End Role="County" Type="CrimePortalModel.Store.County" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="County">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CriminalActivity_City">
+    <End Role="City" Type="CrimePortalModel.Store.City" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CriminalActivityRecord" Type="CrimePortalModel.Store.CriminalActivityRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="CriminalActivityRecord">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CriminalActivity_County">
+    <End Role="County" Type="CrimePortalModel.Store.County" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CriminalActivityRecord" Type="CrimePortalModel.Store.CriminalActivityRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyID" />
+      </Principal>
+      <Dependent Role="CriminalActivityRecord">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LastProcessedCriminalRecord">
+    <End Role="CriminalActivityRecord" Type="CrimePortalModel.Store.CriminalActivityRecord" Multiplicity="0..1" />
+    <End Role="CriminalRecordSource" Type="CrimePortalModel.Store.CriminalRecordSource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CriminalActivityRecord">
+        <PropertyRef Name="RecordId" />
+      </Principal>
+      <Dependent Role="CriminalRecordSource">
+        <PropertyRef Name="LastAccessRecordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_State_Country">
+    <End Role="Country" Type="CrimePortalModel.Store.Country" Multiplicity="1" />
+    <End Role="State" Type="CrimePortalModel.Store.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryCode" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="CountryCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAddess_AddressId">
+    <End Role="Address" Type="CrimePortalModel.Store.Address" Multiplicity="1" />
+    <End Role="UserAddress" Type="CrimePortalModel.Store.UserAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserAddress">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAddess_UserId">
+    <End Role="User" Type="CrimePortalModel.Store.User" Multiplicity="1" />
+    <End Role="UserAddress" Type="CrimePortalModel.Store.UserAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserAddress">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

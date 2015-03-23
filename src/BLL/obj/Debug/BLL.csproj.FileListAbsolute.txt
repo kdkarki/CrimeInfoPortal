@@ -1,0 +1,7 @@
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\BLL\bin\BLL.dll
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\BLL\bin\BLL.pdb
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\BLL\obj\Debug\BLL.dll
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\BLL\obj\Debug\BLL.pdb
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\BLL\bin\DAL.dll
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\BLL\bin\DAL.pdb
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
