@@ -8,7 +8,6 @@
     <EntitySet Name="CriminalActivityRecords" EntityType="CrimePortalModel.CriminalActivityRecord" />
     <EntitySet Name="CriminalRecordSources" EntityType="CrimePortalModel.CriminalRecordSource" />
     <EntitySet Name="States" EntityType="CrimePortalModel.State" />
-    <EntitySet Name="StateCriminalCodeDomains" EntityType="CrimePortalModel.StateCriminalCodeDomain" />
     <EntitySet Name="Users" EntityType="CrimePortalModel.User" />
     <EntitySet Name="UserAddresses" EntityType="CrimePortalModel.UserAddress" />
     <AssociationSet Name="FK_UserAddess_AddressId" Association="CrimePortalModel.FK_UserAddess_AddressId">
@@ -43,6 +42,12 @@
       <End Role="User" EntitySet="Users" />
       <End Role="UserAddress" EntitySet="UserAddresses" />
     </AssociationSet>
+    <EntitySet Name="CityDetailViews" EntityType="CrimePortalModel.CityDetailView" />
+    <EntitySet Name="CountyDetailViews" EntityType="CrimePortalModel.CountyDetailView" />
+    <EntitySet Name="StateCriminalCodeDomainDetailViews" EntityType="CrimePortalModel.StateCriminalCodeDomainDetailView" />
+    <EntitySet Name="UserAddressDetailViews" EntityType="CrimePortalModel.UserAddressDetailView" />
+    <EntitySet Name="CriminalActivityRecordDetailViews" EntityType="CrimePortalModel.CriminalActivityRecordDetailView" />
+    <EntitySet Name="StateCriminalCodeDomains" EntityType="CrimePortalModel.StateCriminalCodeDomain" />
   </EntityContainer>
   <EntityType Name="Address">
     <Key>
@@ -124,16 +129,6 @@
     <NavigationProperty Name="Country" Relationship="CrimePortalModel.FK_State_Country" FromRole="State" ToRole="Country" />
     <NavigationProperty Name="Counties" Relationship="CrimePortalModel.FK_CountyState" FromRole="State" ToRole="County" />
   </EntityType>
-  <EntityType Name="StateCriminalCodeDomain">
-    <Key>
-      <PropertyRef Name="StateId" />
-      <PropertyRef Name="Code" />
-    </Key>
-    <Property Name="StateId" Type="Int32" Nullable="false" />
-    <Property Name="Code" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="Description" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
-    <Property Name="CriminalEventType" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
-  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="UserId" />
@@ -141,7 +136,7 @@
     <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Username" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
     <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="UserAddresses" Relationship="CrimePortalModel.FK_UserAddess_UserId" FromRole="User" ToRole="UserAddress" />
     <Property Type="String" Name="Password" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -209,4 +204,130 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="CityDetailView">
+    <Key>
+      <PropertyRef Name="CityID" />
+      <PropertyRef Name="StateID" />
+      <PropertyRef Name="StateCode" />
+      <PropertyRef Name="StateName" />
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="StateID" Nullable="false" />
+    <Property Type="String" Name="StateCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CountyDetailView">
+    <Key>
+      <PropertyRef Name="CountyID" />
+      <PropertyRef Name="StateID" />
+      <PropertyRef Name="StateCode" />
+      <PropertyRef Name="StateName" />
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Type="Int32" Name="CountyID" Nullable="false" />
+    <Property Type="String" Name="County" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="StateID" Nullable="false" />
+    <Property Type="String" Name="StateCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="StateCriminalCodeDomainDetailView">
+    <Key>
+      <PropertyRef Name="StateId" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="Statute" />
+      <PropertyRef Name="CriminalEventType" />
+      <PropertyRef Name="StateCode" />
+      <PropertyRef Name="StateName" />
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Type="Int32" Name="StateId" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Statute" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Sentence" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Heading" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Subheading" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CriminalEventType" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="StateCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserAddressDetailView">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="AddressId" />
+      <PropertyRef Name="IsPreferred" />
+    </Key>
+    <Property Type="Int64" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="AddressId" Nullable="false" />
+    <Property Type="String" Name="Address1" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="CityId" />
+    <Property Type="String" Name="CityName" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="CountyId" />
+    <Property Type="String" Name="County" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CountyName" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="StateId" />
+    <Property Type="String" Name="StateCode" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="StateName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CountryCode" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CountryName" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Zipcode" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="IsPreferred" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CriminalActivityRecordDetailView">
+    <Key>
+      <PropertyRef Name="RecordId" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="MiddleName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="Age" />
+      <PropertyRef Name="DateArrested" />
+      <PropertyRef Name="ChargeCode" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="DateReported" />
+      <PropertyRef Name="StateCode" />
+      <PropertyRef Name="StateName" />
+      <PropertyRef Name="CountryCode" />
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Type="Int64" Name="RecordId" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MiddleName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Byte" Name="Age" Nullable="false" />
+    <Property Type="DateTime" Name="DateArrested" Nullable="false" Precision="3" />
+    <Property Type="String" Name="ChargeCode" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DateReported" Nullable="false" Precision="0" />
+    <Property Type="Int32" Name="CityId" />
+    <Property Type="Int32" Name="CountyId" />
+    <Property Type="String" Name="CityName" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StateCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="StateId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateCriminalCodeDomain">
+    <Key>
+      <PropertyRef Name="StateId" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="Statute" />
+    </Key>
+    <Property Type="Int32" Name="StateId" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Statute" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Sentence" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Heading" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Subheading" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CriminalEventType" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

@@ -16,6 +16,83 @@
           <EntitySet Name="StateCriminalCodeDomain" EntityType="CrimePortalModel.Store.StateCriminalCodeDomain" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="CrimePortalModel.Store.User" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserAddress" EntityType="CrimePortalModel.Store.UserAddress" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CityDetailView" EntityType="CrimePortalModel.Store.CityDetailView" store:Type="Views" store:Schema="dbo" store:Name="CityDetailView">
+            <DefiningQuery>SELECT 
+      [CityDetailView].[CityID] AS [CityID], 
+      [CityDetailView].[Name] AS [Name], 
+      [CityDetailView].[StateID] AS [StateID], 
+      [CityDetailView].[StateCode] AS [StateCode], 
+      [CityDetailView].[StateName] AS [StateName], 
+      [CityDetailView].[CountryCode] AS [CountryCode]
+      FROM [dbo].[CityDetailView] AS [CityDetailView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CountyDetailView" EntityType="CrimePortalModel.Store.CountyDetailView" store:Type="Views" store:Schema="dbo" store:Name="CountyDetailView">
+            <DefiningQuery>SELECT 
+      [CountyDetailView].[CountyID] AS [CountyID], 
+      [CountyDetailView].[County] AS [County], 
+      [CountyDetailView].[Name] AS [Name], 
+      [CountyDetailView].[StateID] AS [StateID], 
+      [CountyDetailView].[StateCode] AS [StateCode], 
+      [CountyDetailView].[StateName] AS [StateName], 
+      [CountyDetailView].[CountryCode] AS [CountryCode]
+      FROM [dbo].[CountyDetailView] AS [CountyDetailView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CriminalActivityRecordDetailView" EntityType="CrimePortalModel.Store.CriminalActivityRecordDetailView" store:Type="Views" store:Schema="dbo" store:Name="CriminalActivityRecordDetailView">
+            <DefiningQuery>SELECT 
+      [CriminalActivityRecordDetailView].[RecordId] AS [RecordId], 
+      [CriminalActivityRecordDetailView].[FirstName] AS [FirstName], 
+      [CriminalActivityRecordDetailView].[MiddleName] AS [MiddleName], 
+      [CriminalActivityRecordDetailView].[LastName] AS [LastName], 
+      [CriminalActivityRecordDetailView].[Age] AS [Age], 
+      [CriminalActivityRecordDetailView].[DateArrested] AS [DateArrested], 
+      [CriminalActivityRecordDetailView].[ChargeCode] AS [ChargeCode], 
+      [CriminalActivityRecordDetailView].[Address] AS [Address], 
+      [CriminalActivityRecordDetailView].[DateReported] AS [DateReported], 
+      [CriminalActivityRecordDetailView].[CityId] AS [CityId], 
+      [CriminalActivityRecordDetailView].[CountyId] AS [CountyId], 
+      [CriminalActivityRecordDetailView].[CityName] AS [CityName], 
+      [CriminalActivityRecordDetailView].[StateId] AS [StateId], 
+      [CriminalActivityRecordDetailView].[StateCode] AS [StateCode], 
+      [CriminalActivityRecordDetailView].[StateName] AS [StateName], 
+      [CriminalActivityRecordDetailView].[CountryCode] AS [CountryCode]
+      FROM [dbo].[CriminalActivityRecordDetailView] AS [CriminalActivityRecordDetailView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="StateCriminalCodeDomainDetailView" EntityType="CrimePortalModel.Store.StateCriminalCodeDomainDetailView" store:Type="Views" store:Schema="dbo" store:Name="StateCriminalCodeDomainDetailView">
+            <DefiningQuery>SELECT 
+      [StateCriminalCodeDomainDetailView].[StateId] AS [StateId], 
+      [StateCriminalCodeDomainDetailView].[Code] AS [Code], 
+      [StateCriminalCodeDomainDetailView].[Statute] AS [Statute], 
+      [StateCriminalCodeDomainDetailView].[Sentence] AS [Sentence], 
+      [StateCriminalCodeDomainDetailView].[Heading] AS [Heading], 
+      [StateCriminalCodeDomainDetailView].[Subheading] AS [Subheading], 
+      [StateCriminalCodeDomainDetailView].[Description] AS [Description], 
+      [StateCriminalCodeDomainDetailView].[CriminalEventType] AS [CriminalEventType], 
+      [StateCriminalCodeDomainDetailView].[StateCode] AS [StateCode], 
+      [StateCriminalCodeDomainDetailView].[StateName] AS [StateName], 
+      [StateCriminalCodeDomainDetailView].[CountryCode] AS [CountryCode]
+      FROM [dbo].[StateCriminalCodeDomainDetailView] AS [StateCriminalCodeDomainDetailView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserAddressDetailView" EntityType="CrimePortalModel.Store.UserAddressDetailView" store:Type="Views" store:Schema="dbo" store:Name="UserAddressDetailView">
+            <DefiningQuery>SELECT 
+      [UserAddressDetailView].[UserId] AS [UserId], 
+      [UserAddressDetailView].[Username] AS [Username], 
+      [UserAddressDetailView].[AddressId] AS [AddressId], 
+      [UserAddressDetailView].[Address1] AS [Address1], 
+      [UserAddressDetailView].[Address2] AS [Address2], 
+      [UserAddressDetailView].[CityId] AS [CityId], 
+      [UserAddressDetailView].[CityName] AS [CityName], 
+      [UserAddressDetailView].[CountyId] AS [CountyId], 
+      [UserAddressDetailView].[County] AS [County], 
+      [UserAddressDetailView].[CountyName] AS [CountyName], 
+      [UserAddressDetailView].[StateId] AS [StateId], 
+      [UserAddressDetailView].[StateCode] AS [StateCode], 
+      [UserAddressDetailView].[StateName] AS [StateName], 
+      [UserAddressDetailView].[CountryCode] AS [CountryCode], 
+      [UserAddressDetailView].[CountryName] AS [CountryName], 
+      [UserAddressDetailView].[Zipcode] AS [Zipcode], 
+      [UserAddressDetailView].[IsPreferred] AS [IsPreferred]
+      FROM [dbo].[UserAddressDetailView] AS [UserAddressDetailView]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_City_StateId" Association="CrimePortalModel.Store.FK_City_StateId">
             <End Role="State" EntitySet="State" />
             <End Role="City" EntitySet="City" />
@@ -126,9 +203,14 @@
           <Key>
             <PropertyRef Name="StateId" />
             <PropertyRef Name="Code" />
+            <PropertyRef Name="Statute" />
           </Key>
           <Property Name="StateId" Type="int" Nullable="false" />
           <Property Name="Code" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Statute" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Sentence" Type="varchar" MaxLength="50" />
+          <Property Name="Heading" Type="varchar" MaxLength="256" />
+          <Property Name="Subheading" Type="varchar" MaxLength="256" />
           <Property Name="Description" Type="varchar" MaxLength="256" />
           <Property Name="CriminalEventType" Type="varchar" Nullable="false" MaxLength="25" />
         </EntityType>
@@ -140,7 +222,7 @@
           <Property Name="Username" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserAddress">
@@ -150,6 +232,132 @@
           </Key>
           <Property Name="UserId" Type="bigint" Nullable="false" />
           <Property Name="AddressId" Type="bigint" Nullable="false" />
+          <Property Name="IsPreferred" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'CrimePortal.dbo.CityDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="CityDetailView">
+          <Key>
+            <PropertyRef Name="CityID" />
+            <PropertyRef Name="StateID" />
+            <PropertyRef Name="StateCode" />
+            <PropertyRef Name="StateName" />
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="StateCode" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'CrimePortal.dbo.CountyDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="CountyDetailView">
+          <Key>
+            <PropertyRef Name="CountyID" />
+            <PropertyRef Name="StateID" />
+            <PropertyRef Name="StateCode" />
+            <PropertyRef Name="StateName" />
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Name="CountyID" Type="int" Nullable="false" />
+          <Property Name="County" Type="nvarchar" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="StateCode" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'CrimePortal.dbo.CriminalActivityRecordDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="CriminalActivityRecordDetailView">
+          <Key>
+            <PropertyRef Name="RecordId" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="MiddleName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Age" />
+            <PropertyRef Name="DateArrested" />
+            <PropertyRef Name="ChargeCode" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="DateReported" />
+            <PropertyRef Name="StateId" />
+            <PropertyRef Name="StateCode" />
+            <PropertyRef Name="StateName" />
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Name="RecordId" Type="bigint" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Age" Type="tinyint" Nullable="false" />
+          <Property Name="DateArrested" Type="datetime" Nullable="false" />
+          <Property Name="ChargeCode" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="DateReported" Type="date" Nullable="false" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="CountyId" Type="int" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="StateCode" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'CrimePortal.dbo.StateCriminalCodeDomainDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="StateCriminalCodeDomainDetailView">
+          <Key>
+            <PropertyRef Name="StateId" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Statute" />
+            <PropertyRef Name="CriminalEventType" />
+            <PropertyRef Name="StateCode" />
+            <PropertyRef Name="StateName" />
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Statute" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Sentence" Type="varchar" MaxLength="50" />
+          <Property Name="Heading" Type="varchar" MaxLength="256" />
+          <Property Name="Subheading" Type="varchar" MaxLength="256" />
+          <Property Name="Description" Type="varchar" MaxLength="256" />
+          <Property Name="CriminalEventType" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="StateCode" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'CrimePortal.dbo.UserAddressDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="UserAddressDetailView">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="AddressId" />
+            <PropertyRef Name="IsPreferred" />
+          </Key>
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="AddressId" Type="bigint" Nullable="false" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CountyId" Type="int" />
+          <Property Name="County" Type="nvarchar" MaxLength="255" />
+          <Property Name="CountyName" Type="nvarchar" MaxLength="255" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="StateCode" Type="varchar" MaxLength="2" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="2" />
+          <Property Name="CountryName" Type="varchar" MaxLength="64" />
+          <Property Name="Zipcode" Type="varchar" MaxLength="10" />
           <Property Name="IsPreferred" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_City_StateId">
@@ -264,7 +472,6 @@
           <EntitySet Name="CriminalActivityRecords" EntityType="CrimePortalModel.CriminalActivityRecord" />
           <EntitySet Name="CriminalRecordSources" EntityType="CrimePortalModel.CriminalRecordSource" />
           <EntitySet Name="States" EntityType="CrimePortalModel.State" />
-          <EntitySet Name="StateCriminalCodeDomains" EntityType="CrimePortalModel.StateCriminalCodeDomain" />
           <EntitySet Name="Users" EntityType="CrimePortalModel.User" />
           <EntitySet Name="UserAddresses" EntityType="CrimePortalModel.UserAddress" />
           <AssociationSet Name="FK_UserAddess_AddressId" Association="CrimePortalModel.FK_UserAddess_AddressId">
@@ -299,6 +506,12 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserAddress" EntitySet="UserAddresses" />
           </AssociationSet>
+          <EntitySet Name="CityDetailViews" EntityType="CrimePortalModel.CityDetailView" />
+          <EntitySet Name="CountyDetailViews" EntityType="CrimePortalModel.CountyDetailView" />
+          <EntitySet Name="StateCriminalCodeDomainDetailViews" EntityType="CrimePortalModel.StateCriminalCodeDomainDetailView" />
+          <EntitySet Name="UserAddressDetailViews" EntityType="CrimePortalModel.UserAddressDetailView" />
+          <EntitySet Name="CriminalActivityRecordDetailViews" EntityType="CrimePortalModel.CriminalActivityRecordDetailView" />
+          <EntitySet Name="StateCriminalCodeDomains" EntityType="CrimePortalModel.StateCriminalCodeDomain" />
         </EntityContainer>
         <EntityType Name="Address">
           <Key>
@@ -380,16 +593,6 @@
           <NavigationProperty Name="Country" Relationship="CrimePortalModel.FK_State_Country" FromRole="State" ToRole="Country" />
           <NavigationProperty Name="Counties" Relationship="CrimePortalModel.FK_CountyState" FromRole="State" ToRole="County" />
         </EntityType>
-        <EntityType Name="StateCriminalCodeDomain">
-          <Key>
-            <PropertyRef Name="StateId" />
-            <PropertyRef Name="Code" />
-          </Key>
-          <Property Name="StateId" Type="Int32" Nullable="false" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
-          <Property Name="CriminalEventType" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -397,7 +600,7 @@
           <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="UserAddresses" Relationship="CrimePortalModel.FK_UserAddess_UserId" FromRole="User" ToRole="UserAddress" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -465,6 +668,132 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CityDetailView">
+          <Key>
+            <PropertyRef Name="CityID" />
+            <PropertyRef Name="StateID" />
+            <PropertyRef Name="StateCode" />
+            <PropertyRef Name="StateName" />
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Type="Int32" Name="CityID" Nullable="false" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StateID" Nullable="false" />
+          <Property Type="String" Name="StateCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CountyDetailView">
+          <Key>
+            <PropertyRef Name="CountyID" />
+            <PropertyRef Name="StateID" />
+            <PropertyRef Name="StateCode" />
+            <PropertyRef Name="StateName" />
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Type="Int32" Name="CountyID" Nullable="false" />
+          <Property Type="String" Name="County" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StateID" Nullable="false" />
+          <Property Type="String" Name="StateCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StateCriminalCodeDomainDetailView">
+          <Key>
+            <PropertyRef Name="StateId" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Statute" />
+            <PropertyRef Name="CriminalEventType" />
+            <PropertyRef Name="StateCode" />
+            <PropertyRef Name="StateName" />
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Type="Int32" Name="StateId" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Statute" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Sentence" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Heading" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Subheading" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CriminalEventType" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="StateCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserAddressDetailView">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="AddressId" />
+            <PropertyRef Name="IsPreferred" />
+          </Key>
+          <Property Type="Int64" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="AddressId" Nullable="false" />
+          <Property Type="String" Name="Address1" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CityId" />
+          <Property Type="String" Name="CityName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CountyId" />
+          <Property Type="String" Name="County" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CountyName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="String" Name="StateCode" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="StateName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CountryCode" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CountryName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zipcode" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsPreferred" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CriminalActivityRecordDetailView">
+          <Key>
+            <PropertyRef Name="RecordId" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="MiddleName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Age" />
+            <PropertyRef Name="DateArrested" />
+            <PropertyRef Name="ChargeCode" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="DateReported" />
+            <PropertyRef Name="StateCode" />
+            <PropertyRef Name="StateName" />
+            <PropertyRef Name="CountryCode" />
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Type="Int64" Name="RecordId" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MiddleName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="Age" Nullable="false" />
+          <Property Type="DateTime" Name="DateArrested" Nullable="false" Precision="3" />
+          <Property Type="String" Name="ChargeCode" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateReported" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="CityId" />
+          <Property Type="Int32" Name="CountyId" />
+          <Property Type="String" Name="CityName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StateCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StateId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateCriminalCodeDomain">
+          <Key>
+            <PropertyRef Name="StateId" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Statute" />
+          </Key>
+          <Property Type="Int32" Name="StateId" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Statute" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Sentence" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Heading" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Subheading" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CriminalEventType" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -542,16 +871,6 @@
                 <ScalarProperty Name="StateID" ColumnName="StateID" />
                 <ScalarProperty Name="StateCode" ColumnName="StateCode" />
                 <ScalarProperty Name="StateName" ColumnName="StateName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StateCriminalCodeDomains">
-            <EntityTypeMapping TypeName="CrimePortalModel.StateCriminalCodeDomain">
-              <MappingFragment StoreEntitySet="StateCriminalCodeDomain">
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CriminalEventType" ColumnName="CriminalEventType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -646,6 +965,107 @@
               <ScalarProperty Name="AddressId" ColumnName="AddressId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="CityDetailViews">
+            <EntityTypeMapping TypeName="CrimePortalModel.CityDetailView">
+              <MappingFragment StoreEntitySet="CityDetailView">
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountyDetailViews">
+            <EntityTypeMapping TypeName="CrimePortalModel.CountyDetailView">
+              <MappingFragment StoreEntitySet="CountyDetailView">
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateCriminalCodeDomainDetailViews">
+            <EntityTypeMapping TypeName="CrimePortalModel.StateCriminalCodeDomainDetailView">
+              <MappingFragment StoreEntitySet="StateCriminalCodeDomainDetailView">
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="CriminalEventType" ColumnName="CriminalEventType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Subheading" ColumnName="Subheading" />
+                <ScalarProperty Name="Heading" ColumnName="Heading" />
+                <ScalarProperty Name="Sentence" ColumnName="Sentence" />
+                <ScalarProperty Name="Statute" ColumnName="Statute" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAddressDetailViews">
+            <EntityTypeMapping TypeName="CrimePortalModel.UserAddressDetailView">
+              <MappingFragment StoreEntitySet="UserAddressDetailView">
+                <ScalarProperty Name="IsPreferred" ColumnName="IsPreferred" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CriminalActivityRecordDetailViews">
+            <EntityTypeMapping TypeName="CrimePortalModel.CriminalActivityRecordDetailView">
+              <MappingFragment StoreEntitySet="CriminalActivityRecordDetailView">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="DateReported" ColumnName="DateReported" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ChargeCode" ColumnName="ChargeCode" />
+                <ScalarProperty Name="DateArrested" ColumnName="DateArrested" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateCriminalCodeDomains">
+            <EntityTypeMapping TypeName="CrimePortalModel.StateCriminalCodeDomain">
+              <MappingFragment StoreEntitySet="StateCriminalCodeDomain">
+                <ScalarProperty Name="CriminalEventType" ColumnName="CriminalEventType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Subheading" ColumnName="Subheading" />
+                <ScalarProperty Name="Heading" ColumnName="Heading" />
+                <ScalarProperty Name="Sentence" ColumnName="Sentence" />
+                <ScalarProperty Name="Statute" ColumnName="Statute" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -10,19 +10,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/BLL.dll">
-      <publishTime>03/23/2015 16:08:08</publishTime>
+      <publishTime>03/30/2015 15:59:55</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>03/23/2015 15:59:14</publishTime>
+      <publishTime>03/30/2015 15:59:55</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>03/23/2015 16:08:54</publishTime>
+      <publishTime>03/30/2015 15:59:58</publishTime>
     </File>
     <File Include="Service.svc">
       <publishTime>03/23/2015 14:31:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/23/2015 15:59:53</publishTime>
+      <publishTime>03/30/2015 15:59:56</publishTime>
     </File>
   </ItemGroup>
 </Project>

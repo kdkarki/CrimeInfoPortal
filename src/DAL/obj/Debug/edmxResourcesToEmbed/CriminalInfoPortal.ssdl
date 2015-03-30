@@ -11,6 +11,83 @@
     <EntitySet Name="StateCriminalCodeDomain" EntityType="CrimePortalModel.Store.StateCriminalCodeDomain" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="CrimePortalModel.Store.User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserAddress" EntityType="CrimePortalModel.Store.UserAddress" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CityDetailView" EntityType="CrimePortalModel.Store.CityDetailView" store:Type="Views" store:Schema="dbo" store:Name="CityDetailView">
+      <DefiningQuery>SELECT 
+      [CityDetailView].[CityID] AS [CityID], 
+      [CityDetailView].[Name] AS [Name], 
+      [CityDetailView].[StateID] AS [StateID], 
+      [CityDetailView].[StateCode] AS [StateCode], 
+      [CityDetailView].[StateName] AS [StateName], 
+      [CityDetailView].[CountryCode] AS [CountryCode]
+      FROM [dbo].[CityDetailView] AS [CityDetailView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CountyDetailView" EntityType="CrimePortalModel.Store.CountyDetailView" store:Type="Views" store:Schema="dbo" store:Name="CountyDetailView">
+      <DefiningQuery>SELECT 
+      [CountyDetailView].[CountyID] AS [CountyID], 
+      [CountyDetailView].[County] AS [County], 
+      [CountyDetailView].[Name] AS [Name], 
+      [CountyDetailView].[StateID] AS [StateID], 
+      [CountyDetailView].[StateCode] AS [StateCode], 
+      [CountyDetailView].[StateName] AS [StateName], 
+      [CountyDetailView].[CountryCode] AS [CountryCode]
+      FROM [dbo].[CountyDetailView] AS [CountyDetailView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CriminalActivityRecordDetailView" EntityType="CrimePortalModel.Store.CriminalActivityRecordDetailView" store:Type="Views" store:Schema="dbo" store:Name="CriminalActivityRecordDetailView">
+      <DefiningQuery>SELECT 
+      [CriminalActivityRecordDetailView].[RecordId] AS [RecordId], 
+      [CriminalActivityRecordDetailView].[FirstName] AS [FirstName], 
+      [CriminalActivityRecordDetailView].[MiddleName] AS [MiddleName], 
+      [CriminalActivityRecordDetailView].[LastName] AS [LastName], 
+      [CriminalActivityRecordDetailView].[Age] AS [Age], 
+      [CriminalActivityRecordDetailView].[DateArrested] AS [DateArrested], 
+      [CriminalActivityRecordDetailView].[ChargeCode] AS [ChargeCode], 
+      [CriminalActivityRecordDetailView].[Address] AS [Address], 
+      [CriminalActivityRecordDetailView].[DateReported] AS [DateReported], 
+      [CriminalActivityRecordDetailView].[CityId] AS [CityId], 
+      [CriminalActivityRecordDetailView].[CountyId] AS [CountyId], 
+      [CriminalActivityRecordDetailView].[CityName] AS [CityName], 
+      [CriminalActivityRecordDetailView].[StateId] AS [StateId], 
+      [CriminalActivityRecordDetailView].[StateCode] AS [StateCode], 
+      [CriminalActivityRecordDetailView].[StateName] AS [StateName], 
+      [CriminalActivityRecordDetailView].[CountryCode] AS [CountryCode]
+      FROM [dbo].[CriminalActivityRecordDetailView] AS [CriminalActivityRecordDetailView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StateCriminalCodeDomainDetailView" EntityType="CrimePortalModel.Store.StateCriminalCodeDomainDetailView" store:Type="Views" store:Schema="dbo" store:Name="StateCriminalCodeDomainDetailView">
+      <DefiningQuery>SELECT 
+      [StateCriminalCodeDomainDetailView].[StateId] AS [StateId], 
+      [StateCriminalCodeDomainDetailView].[Code] AS [Code], 
+      [StateCriminalCodeDomainDetailView].[Statute] AS [Statute], 
+      [StateCriminalCodeDomainDetailView].[Sentence] AS [Sentence], 
+      [StateCriminalCodeDomainDetailView].[Heading] AS [Heading], 
+      [StateCriminalCodeDomainDetailView].[Subheading] AS [Subheading], 
+      [StateCriminalCodeDomainDetailView].[Description] AS [Description], 
+      [StateCriminalCodeDomainDetailView].[CriminalEventType] AS [CriminalEventType], 
+      [StateCriminalCodeDomainDetailView].[StateCode] AS [StateCode], 
+      [StateCriminalCodeDomainDetailView].[StateName] AS [StateName], 
+      [StateCriminalCodeDomainDetailView].[CountryCode] AS [CountryCode]
+      FROM [dbo].[StateCriminalCodeDomainDetailView] AS [StateCriminalCodeDomainDetailView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserAddressDetailView" EntityType="CrimePortalModel.Store.UserAddressDetailView" store:Type="Views" store:Schema="dbo" store:Name="UserAddressDetailView">
+      <DefiningQuery>SELECT 
+      [UserAddressDetailView].[UserId] AS [UserId], 
+      [UserAddressDetailView].[Username] AS [Username], 
+      [UserAddressDetailView].[AddressId] AS [AddressId], 
+      [UserAddressDetailView].[Address1] AS [Address1], 
+      [UserAddressDetailView].[Address2] AS [Address2], 
+      [UserAddressDetailView].[CityId] AS [CityId], 
+      [UserAddressDetailView].[CityName] AS [CityName], 
+      [UserAddressDetailView].[CountyId] AS [CountyId], 
+      [UserAddressDetailView].[County] AS [County], 
+      [UserAddressDetailView].[CountyName] AS [CountyName], 
+      [UserAddressDetailView].[StateId] AS [StateId], 
+      [UserAddressDetailView].[StateCode] AS [StateCode], 
+      [UserAddressDetailView].[StateName] AS [StateName], 
+      [UserAddressDetailView].[CountryCode] AS [CountryCode], 
+      [UserAddressDetailView].[CountryName] AS [CountryName], 
+      [UserAddressDetailView].[Zipcode] AS [Zipcode], 
+      [UserAddressDetailView].[IsPreferred] AS [IsPreferred]
+      FROM [dbo].[UserAddressDetailView] AS [UserAddressDetailView]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_City_StateId" Association="CrimePortalModel.Store.FK_City_StateId">
       <End Role="State" EntitySet="State" />
       <End Role="City" EntitySet="City" />
@@ -121,9 +198,14 @@
     <Key>
       <PropertyRef Name="StateId" />
       <PropertyRef Name="Code" />
+      <PropertyRef Name="Statute" />
     </Key>
     <Property Name="StateId" Type="int" Nullable="false" />
     <Property Name="Code" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Statute" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Sentence" Type="varchar" MaxLength="50" />
+    <Property Name="Heading" Type="varchar" MaxLength="256" />
+    <Property Name="Subheading" Type="varchar" MaxLength="256" />
     <Property Name="Description" Type="varchar" MaxLength="256" />
     <Property Name="CriminalEventType" Type="varchar" Nullable="false" MaxLength="25" />
   </EntityType>
@@ -135,7 +217,7 @@
     <Property Name="Username" Type="varchar" Nullable="false" MaxLength="20" />
     <Property Name="Password" Type="varchar" Nullable="false" MaxLength="20" />
     <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="50" />
     <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="UserAddress">
@@ -145,6 +227,132 @@
     </Key>
     <Property Name="UserId" Type="bigint" Nullable="false" />
     <Property Name="AddressId" Type="bigint" Nullable="false" />
+    <Property Name="IsPreferred" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'CrimePortal.dbo.CityDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="CityDetailView">
+    <Key>
+      <PropertyRef Name="CityID" />
+      <PropertyRef Name="StateID" />
+      <PropertyRef Name="StateCode" />
+      <PropertyRef Name="StateName" />
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="CityID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="StateID" Type="int" Nullable="false" />
+    <Property Name="StateCode" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CountryCode" Type="varchar" Nullable="false" MaxLength="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'CrimePortal.dbo.CountyDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="CountyDetailView">
+    <Key>
+      <PropertyRef Name="CountyID" />
+      <PropertyRef Name="StateID" />
+      <PropertyRef Name="StateCode" />
+      <PropertyRef Name="StateName" />
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="CountyID" Type="int" Nullable="false" />
+    <Property Name="County" Type="nvarchar" MaxLength="255" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="StateID" Type="int" Nullable="false" />
+    <Property Name="StateCode" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CountryCode" Type="varchar" Nullable="false" MaxLength="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'CrimePortal.dbo.CriminalActivityRecordDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="CriminalActivityRecordDetailView">
+    <Key>
+      <PropertyRef Name="RecordId" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="MiddleName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="Age" />
+      <PropertyRef Name="DateArrested" />
+      <PropertyRef Name="ChargeCode" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="DateReported" />
+      <PropertyRef Name="StateId" />
+      <PropertyRef Name="StateCode" />
+      <PropertyRef Name="StateName" />
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="RecordId" Type="bigint" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Age" Type="tinyint" Nullable="false" />
+    <Property Name="DateArrested" Type="datetime" Nullable="false" />
+    <Property Name="ChargeCode" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="256" />
+    <Property Name="DateReported" Type="date" Nullable="false" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="CountyId" Type="int" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="255" />
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="StateCode" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CountryCode" Type="varchar" Nullable="false" MaxLength="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'CrimePortal.dbo.StateCriminalCodeDomainDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="StateCriminalCodeDomainDetailView">
+    <Key>
+      <PropertyRef Name="StateId" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="Statute" />
+      <PropertyRef Name="CriminalEventType" />
+      <PropertyRef Name="StateCode" />
+      <PropertyRef Name="StateName" />
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="Code" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Statute" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Sentence" Type="varchar" MaxLength="50" />
+    <Property Name="Heading" Type="varchar" MaxLength="256" />
+    <Property Name="Subheading" Type="varchar" MaxLength="256" />
+    <Property Name="Description" Type="varchar" MaxLength="256" />
+    <Property Name="CriminalEventType" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="StateCode" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CountryCode" Type="varchar" Nullable="false" MaxLength="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'CrimePortal.dbo.UserAddressDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="UserAddressDetailView">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="AddressId" />
+      <PropertyRef Name="IsPreferred" />
+    </Key>
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="AddressId" Type="bigint" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="255" />
+    <Property Name="CountyId" Type="int" />
+    <Property Name="County" Type="nvarchar" MaxLength="255" />
+    <Property Name="CountyName" Type="nvarchar" MaxLength="255" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="StateCode" Type="varchar" MaxLength="2" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CountryCode" Type="varchar" MaxLength="2" />
+    <Property Name="CountryName" Type="varchar" MaxLength="64" />
+    <Property Name="Zipcode" Type="varchar" MaxLength="10" />
     <Property Name="IsPreferred" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_City_StateId">

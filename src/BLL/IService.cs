@@ -13,16 +13,7 @@ namespace BLL
     [ServiceContract]
     public interface IService
     {
-
-        [OperationContract]
-        [WebInvoke(Method="GET", 
-                    ResponseFormat=WebMessageFormat.Xml, 
-                    BodyStyle=WebMessageBodyStyle.Wrapped, 
-                    UriTemplate = "GetData/{value}")]
-        string GetData(string value);
-
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        #region User Management
 
         [OperationContract]
         [WebInvoke(Method = "GET",
@@ -44,29 +35,96 @@ namespace BLL
                     RequestFormat = WebMessageFormat.Xml,
                     BodyStyle = WebMessageBodyStyle.Wrapped,
                     UriTemplate = "CreateUser")]
-        bool CreateNewUser(DAL.User NewUser);
-    }
+        bool CreateUser(DAL.User NewUser);
 
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "CreateNewUser?uname={username}&pwd={password}&fname={firstname}&mname={middlename}&lname={lastname}")]
+        User CreateNewUser(string Username, string Password, string FirstName, string MiddleName, string LastName);
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "UpdateUserInfo?uid={userid}&uname={username}&pwd={password}&fname={firstname}&mname={middlename}&lname={lastname}")]
+        User UpdateUserInfo(string UserId,string Username, string Password, string FirstName, string MiddleName, string LastName);
 
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
+        #region Address
 
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "GetUserAddressByUserName/{username}")]
+        UserAddressDetailView[] GetUserAddressByUserName(string Username);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "GetUserAddressByUserId/{userid}")]
+        UserAddressDetailView[] GetUserAddressByUserId(string UserId);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "GetStatesByCountryCode/{countrycode}")]
+        State[] GetStatesByCountryCode(string CountryCode);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "GetCitiesByCountryCodeStateCode/{countrycode}/{statecode}")]
+        CityDetailView[] GetCitiesByCountryCodeStateCode(string CountryCode, string StateCode);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "GetCityByStateId/{stateid}")]
+        CityDetailView[] GetCitiesByStateId(string StateId);
+
+        #endregion
+
+        #endregion
+
+        #region Criminal Records
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "UpdateStateChargeCodeDomain/{statecode}")]
+        bool UpdateStateChargeCodeDomain(string StateCode);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "GetCriminalRecordsByCityId/{cityid}")]
+        CriminalActivityRecordDetailView[] GetCriminalRecordsByCityId(string CityId);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "GetCriminalRecordsByStateIdCityName/{stateid}/{cityname}")]
+        CriminalActivityRecordDetailView[] GetCriminalRecordsByStateIdCityName(string StateId, string CityName);
+
+        #endregion
     }
 }
