@@ -10,19 +10,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/BLL.dll">
-      <publishTime>03/30/2015 15:59:55</publishTime>
+      <publishTime>03/30/2015 21:44:40</publishTime>
+    </File>
+    <File Include="bin/BLL.pdb">
+      <publishTime>03/30/2015 21:44:40</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>03/30/2015 15:59:55</publishTime>
+      <publishTime>03/30/2015 21:44:40</publishTime>
+    </File>
+    <File Include="bin/DAL.pdb">
+      <publishTime>03/30/2015 21:44:40</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>03/30/2015 15:59:58</publishTime>
+      <publishTime>03/30/2015 22:02:51</publishTime>
     </File>
     <File Include="Service.svc">
-      <publishTime>03/23/2015 14:31:38</publishTime>
+      <publishTime>03/30/2015 21:41:12</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/30/2015 15:59:56</publishTime>
+      <publishTime>03/30/2015 22:00:51</publishTime>
     </File>
   </ItemGroup>
 </Project>
