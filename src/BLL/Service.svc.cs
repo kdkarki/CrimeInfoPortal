@@ -125,6 +125,112 @@ namespace BLL
 
         #region Address
 
+        public Address CreateNewUserAddressByUsername(string Username, string Address1, string Address2, string cityId, string Zipcode, string IsPreferred)
+        {
+            if (String.IsNullOrWhiteSpace(Username))
+                return null;
+            if (String.IsNullOrWhiteSpace(Address1) && String.IsNullOrWhiteSpace(cityId))
+                return null;
+            int cId = 0;
+
+            if (!Int32.TryParse(cityId, out cId))
+                return null;
+
+            Address objAddress = new Address()
+                                 {
+                                     Address1 = Address1,
+                                     Address2 = Address2,
+                                     CityId = cId,
+                                     Zipcode = Zipcode
+                                 };
+
+            using(CrimeInfoPortalDAO objDAO = new CrimeInfoPortalDAO())
+            {
+                User objUser = objDAO.Users.FirstOrDefault(u => u.Username == Username);
+                if(objUser != null)
+                {
+                    UserAddress objUserAddress = new UserAddress() { Address = objAddress, 
+                                                                     IsPreferred = (!String.IsNullOrEmpty(IsPreferred) && IsPreferred == "true")?true:false };
+                    objUser.UserAddresses.Add(objUserAddress);
+                    int updatedRecordCount = objDAO.SaveChanges();
+
+                    return objAddress;
+                }
+            }
+
+            return null;
+        }
+
+        public Address CreateNewUserAddressByUserId(string UserId, string Address1, string Address2, string cityId, string Zipcode, string IsPreferred)
+        {
+            if (String.IsNullOrWhiteSpace(UserId))
+                return null;
+            if (String.IsNullOrWhiteSpace(Address1) && String.IsNullOrWhiteSpace(cityId))
+                return null;
+            int cId = 0;
+            long uId = 0;
+
+            if (!Int64.TryParse(UserId, out uId))
+                return null;
+
+            if (!Int32.TryParse(cityId, out cId))
+                return null;
+
+            Address objAddress = new Address()
+            {
+                Address1 = Address1,
+                Address2 = Address2,
+                CityId = cId,
+                Zipcode = Zipcode
+            };
+
+            using (CrimeInfoPortalDAO objDAO = new CrimeInfoPortalDAO())
+            {
+                User objUser = objDAO.Users.FirstOrDefault(u => u.UserId == uId);
+                if (objUser != null)
+                {
+                    UserAddress objUserAddress = new UserAddress()
+                                                {
+                                                    Address = objAddress,
+                                                    IsPreferred = (!String.IsNullOrEmpty(IsPreferred) && IsPreferred == "true") ? true : false
+                                                };
+                    objUser.UserAddresses.Add(objUserAddress);
+                    int updatedRecordCount = objDAO.SaveChanges();
+
+                    return objAddress;
+                }
+            }
+
+            return null;
+        }
+
+        public bool DeleteUserAddress(string UserId, string AddressId)
+        {
+            if (String.IsNullOrWhiteSpace(UserId) && String.IsNullOrWhiteSpace(AddressId))
+                return false;
+            int aId = 0;
+            long uId = 0;
+
+            if (!Int64.TryParse(UserId, out uId))
+                return false;
+
+            if (!Int32.TryParse(AddressId, out aId))
+                return false;
+
+            using (CrimeInfoPortalDAO objDAO = new CrimeInfoPortalDAO())
+            {
+                Address objAddress = objDAO.Addresses.FirstOrDefault(a => a.Id == aId);
+                if(objAddress != null)
+                {
+                    objDAO.DeleteObject(objAddress);
+                    int deletedRecordCount = objDAO.SaveChanges();
+                    return true;
+                } 
+            }
+
+            return false;
+        }
+
         public UserAddressDetailView[] GetUserAddressByUserName(string Username)
         {
             if (String.IsNullOrWhiteSpace(Username))

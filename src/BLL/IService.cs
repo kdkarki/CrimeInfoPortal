@@ -18,7 +18,7 @@ namespace BLL
         [OperationContract]
         [WebInvoke(Method = "GET",
                     ResponseFormat = WebMessageFormat.Xml,
-                    UriTemplate = "GetUserByUserName/{username}")]
+                    UriTemplate = "GetUserByUserName?uname={username}")]
         User GetUserByUserName(string UserName);
 
         [OperationContract]
@@ -26,7 +26,7 @@ namespace BLL
                     ResponseFormat = WebMessageFormat.Xml,
                     RequestFormat = WebMessageFormat.Xml,
                     BodyStyle = WebMessageBodyStyle.Wrapped,
-                    UriTemplate = "AuthenticateUser?username={username}&password={password}")]
+                    UriTemplate = "AuthenticateUser?uname={username}&pwd={password}")]
         bool AuthenticateUser(string Username, string Password);
 
         [OperationContract]
@@ -60,7 +60,31 @@ namespace BLL
                     ResponseFormat = WebMessageFormat.Xml,
                     RequestFormat = WebMessageFormat.Xml,
                     BodyStyle = WebMessageBodyStyle.Wrapped,
-                    UriTemplate = "GetUserAddressByUserName/{username}")]
+                    UriTemplate = "CreateNewUserAddressByUsername?uname={username}&add1={Address1}&add2={address2}&cityid={cityid}&zipcode={zipcode}&isperf={ispreferred}")]
+        Address CreateNewUserAddressByUsername(string Username, string Address1, string Address2, string cityId, string Zipcode, string IsPreferred);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "CreateNewUserAddressByUserId?uid={userid}&add1={Address1}&add2={address2}&cityid={cityid}&zipcode={zipcode}&isperf={ispreferred}")]
+        Address CreateNewUserAddressByUserId(string UserId, string Address1, string Address2, string cityId, string Zipcode, string IsPreferred);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "DeleteUserAddress?uid={userid}&addId={addressid}")]
+        bool DeleteUserAddress(string UserId, string AddressId);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "GetUserAddressByUserName?uname={username}")]
         UserAddressDetailView[] GetUserAddressByUserName(string Username);
 
         [OperationContract]
@@ -68,7 +92,7 @@ namespace BLL
                     ResponseFormat = WebMessageFormat.Xml,
                     RequestFormat = WebMessageFormat.Xml,
                     BodyStyle = WebMessageBodyStyle.Wrapped,
-                    UriTemplate = "GetUserAddressByUserId/{userid}")]
+                    UriTemplate = "GetUserAddressByUserId?uid={userid}")]
         UserAddressDetailView[] GetUserAddressByUserId(string UserId);
 
         [OperationContract]
@@ -76,7 +100,7 @@ namespace BLL
                     ResponseFormat = WebMessageFormat.Xml,
                     RequestFormat = WebMessageFormat.Xml,
                     BodyStyle = WebMessageBodyStyle.Wrapped,
-                    UriTemplate = "GetStatesByCountryCode/{countrycode}")]
+                    UriTemplate = "GetStatesByCountryCode?countrycode={countrycode}")]
         State[] GetStatesByCountryCode(string CountryCode);
 
         [OperationContract]
@@ -84,7 +108,7 @@ namespace BLL
                     ResponseFormat = WebMessageFormat.Xml,
                     RequestFormat = WebMessageFormat.Xml,
                     BodyStyle = WebMessageBodyStyle.Wrapped,
-                    UriTemplate = "GetCitiesByCountryCodeStateCode/{countrycode}/{statecode}")]
+                    UriTemplate = "GetCitiesByCountryCodeStateCode?countrycode={countrycode}&statecode={statecode}")]
         CityDetailView[] GetCitiesByCountryCodeStateCode(string CountryCode, string StateCode);
 
         [OperationContract]
@@ -92,7 +116,7 @@ namespace BLL
                     ResponseFormat = WebMessageFormat.Xml,
                     RequestFormat = WebMessageFormat.Xml,
                     BodyStyle = WebMessageBodyStyle.Wrapped,
-                    UriTemplate = "GetCityByStateId/{stateid}")]
+                    UriTemplate = "GetCityByStateId?stateid={stateid}")]
         CityDetailView[] GetCitiesByStateId(string StateId);
 
         #endregion
@@ -114,7 +138,7 @@ namespace BLL
                     ResponseFormat = WebMessageFormat.Xml,
                     RequestFormat = WebMessageFormat.Xml,
                     BodyStyle = WebMessageBodyStyle.Wrapped,
-                    UriTemplate = "GetCriminalRecordsByCityId/{cityid}")]
+                    UriTemplate = "GetCriminalRecordsByCityId?cityid={cityid}")]
         CriminalActivityRecordDetailView[] GetCriminalRecordsByCityId(string CityId);
 
         [OperationContract]
@@ -122,7 +146,7 @@ namespace BLL
                     ResponseFormat = WebMessageFormat.Xml,
                     RequestFormat = WebMessageFormat.Xml,
                     BodyStyle = WebMessageBodyStyle.Wrapped,
-                    UriTemplate = "GetCriminalRecordsByStateIdCityName/{stateid}/{cityname}")]
+                    UriTemplate = "GetCriminalRecordsByStateIdCityName?stateid={stateid}&cityname={cityname}")]
         CriminalActivityRecordDetailView[] GetCriminalRecordsByStateIdCityName(string StateId, string CityName);
 
         #endregion
