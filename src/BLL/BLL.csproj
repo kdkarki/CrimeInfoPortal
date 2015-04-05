@@ -67,6 +67,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crawlers\CIPCrawler.cs" />
     <Compile Include="Crawlers\State_VA\VADailyCrawler.cs" />
     <Compile Include="Crawlers\State_VA\VAWeeklyCrawler.cs" />
     <Compile Include="Service.svc.cs">
