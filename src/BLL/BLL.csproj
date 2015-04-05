@@ -67,6 +67,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crawlers\State_VA\VADailyCrawler.cs" />
+    <Compile Include="Crawlers\State_VA\VAWeeklyCrawler.cs" />
     <Compile Include="Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
