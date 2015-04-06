@@ -360,5 +360,13 @@ namespace BLL
 
             return new CriminalActivityRecordDetailView[0];
         }
+
+        public bool InitiateDataCrawling()
+        {
+            //BLL.Crawlers.CIPCrawler vaWeeklyCrawler = new BLL.Crawlers.State_VA.VAWeeklyCrawler(null, "http://www.fairfaxcounty.gov/police/crime/arrest.txt");
+            //vaWeeklyCrawler.StartCrawling();
+            Crawlers.DataCrawler.InitiateCrawling();
+            return true;
+        }
     }
 }

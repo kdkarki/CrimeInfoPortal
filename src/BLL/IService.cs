@@ -149,6 +149,14 @@ namespace BLL
                     UriTemplate = "GetCriminalRecordsByStateIdCityName?stateid={stateid}&cityname={cityname}")]
         CriminalActivityRecordDetailView[] GetCriminalRecordsByStateIdCityName(string StateId, string CityName);
 
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    RequestFormat = WebMessageFormat.Xml,
+                    BodyStyle = WebMessageBodyStyle.Wrapped,
+                    UriTemplate = "InitiateDataCrawling")]
+        bool InitiateDataCrawling();
+
         #endregion
     }
 }
