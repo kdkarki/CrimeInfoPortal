@@ -53,6 +53,34 @@ namespace BLL
                     UriTemplate = "UpdateUserInfo?uid={userid}&uname={username}&pwd={password}&fname={firstname}&mname={middlename}&lname={lastname}")]
         User UpdateUserInfo(string UserId,string Username, string Password, string FirstName, string MiddleName, string LastName);
 
+        #region User Preference
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    UriTemplate = "GetCriminalEventTypeList")]
+        CriminalEventType[] GetCriminalEventTypeList();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    UriTemplate = "GetUserPreference?uid={userid}")]
+        UserEventTypePreference[] GetUserPreference(string UserId);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    UriTemplate = "AddUserPreference?uid={userid}&pref={preference}")]
+        UserEventTypePreference AddUserPreference(string UserId, string Preference);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+                    ResponseFormat = WebMessageFormat.Xml,
+                    UriTemplate = "DeleteUserPreference?uid={userid}&pref={preference}")]
+        bool DeleteUserPreference(string UserId, string Preference);
+
+        #endregion
+
         #region Address
 
         [OperationContract]

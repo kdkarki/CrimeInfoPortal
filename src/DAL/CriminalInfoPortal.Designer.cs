@@ -18,7 +18,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("CrimePortalModel", "FK_LastProcessedCriminalRecord", "CriminalActivityRecord", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.CriminalActivityRecord), "CriminalRecordSource", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.CriminalRecordSource))]
 
 // Original file name:
-// Generation date: 4/7/2015 11:47:29 PM
+// Generation date: 4/8/2015 12:40:59 AM
 namespace DAL
 {
     

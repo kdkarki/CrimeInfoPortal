@@ -121,6 +121,84 @@ namespace BLL
             }
         }
 
+
+        #region User Preference
+
+        public UserEventTypePreference[] GetUserPreference(string UserId)
+        {
+            int userId = 0;
+            if (String.IsNullOrWhiteSpace(UserId) || !Int32.TryParse(UserId, out userId))
+                return new UserEventTypePreference[0];
+            using(CrimeInfoPortalDAO objDAO = new CrimeInfoPortalDAO())
+            {
+                var userPrefList = objDAO.UserEventTypePreferences.Where(up => up.UserId == userId);
+                if (userPrefList != null && userPrefList.Count() > 0)
+                    return userPrefList.ToArray();
+                else
+                    return new UserEventTypePreference[0];
+            }
+        }
+
+        public UserEventTypePreference AddUserPreference(string UserId, string Preference)
+        {
+            int userId = 0;
+            if (String.IsNullOrWhiteSpace(UserId) || String.IsNullOrWhiteSpace(Preference)
+                || !Int32.TryParse(UserId, out userId))
+                return null;
+            UserEventTypePreference uetp = new UserEventTypePreference() { UserId = userId, CriminalEventType = Preference };
+            using (CrimeInfoPortalDAO objDAO = new CrimeInfoPortalDAO())
+            {
+                try
+                {
+                    objDAO.AddToUserEventTypePreferences(uetp);
+                    int addedrecords = objDAO.SaveChanges();
+                    if (addedrecords == 0)
+                        uetp = null;
+                }
+                catch (Exception ex) { uetp = null; }
+            }
+
+            return uetp;
+        }
+
+        public bool DeleteUserPreference(string UserId, string Preference)
+        {
+            int userId = 0;
+            if (String.IsNullOrWhiteSpace(UserId) || String.IsNullOrWhiteSpace(Preference)
+                || !Int32.TryParse(UserId, out userId))
+                return false;
+            
+            using (CrimeInfoPortalDAO objDAO = new CrimeInfoPortalDAO())
+            {
+                try
+                {
+                    UserEventTypePreference uetp = objDAO.UserEventTypePreferences.FirstOrDefault(u => u.UserId == userId 
+                                                                                                    && u.CriminalEventType == Preference);
+
+                    if (uetp != null)
+                    {
+                        objDAO.DeleteObject(uetp);
+                        int deletedRecords = objDAO.SaveChanges();
+                        if (deletedRecords == 0)
+                            return false;
+                        return true;
+                    }
+                }
+                catch (Exception ex) { }
+            }
+
+            return false;
+        }
+
+        public CriminalEventType[] GetCriminalEventTypeList()
+        {
+            using(CrimeInfoPortalDAO objDAO = new CrimeInfoPortalDAO())
+            {
+                return objDAO.CriminalEventTypes.ToArray();
+            }
+        }
+
+        #endregion
         #endregion
 
         #region Address
@@ -317,6 +395,8 @@ namespace BLL
 
         #endregion
 
+        #region Criminal Records
+
         public bool UpdateStateChargeCodeDomain(string StateCode)
         {
             StateCodeDomain.UpdateStateChargeCodeDomain(StateCode);
@@ -326,11 +406,12 @@ namespace BLL
         public CriminalActivityRecordDetailView[] GetCriminalRecordsByCityId(string CityId)
         {
             int cId = 0;
-            if (String.IsNullOrWhiteSpace(CityId) || Int32.TryParse(CityId, out cId))
+            if (String.IsNullOrWhiteSpace(CityId) || !Int32.TryParse(CityId, out cId))
                 return new CriminalActivityRecordDetailView[0];
 
             using (CrimeInfoPortalDAO objDAO = new CrimeInfoPortalDAO())
             {
+                var test = objDAO.CriminalActivityRecordDetailViews;
                 var cardViewList = objDAO.CriminalActivityRecordDetailViews.Where(c => c.CityId == cId);
 
                 if (cardViewList != null && cardViewList.Count() > 0)
@@ -344,7 +425,7 @@ namespace BLL
         {
             int sId = 0;
             if (String.IsNullOrWhiteSpace(StateId) || String.IsNullOrWhiteSpace(CityName)
-                || Int32.TryParse(StateId, out sId))
+                || !Int32.TryParse(StateId, out sId))
                 return new CriminalActivityRecordDetailView[0];
 
             using (CrimeInfoPortalDAO objDAO = new CrimeInfoPortalDAO())
@@ -363,10 +444,10 @@ namespace BLL
 
         public bool InitiateDataCrawling()
         {
-            //BLL.Crawlers.CIPCrawler vaWeeklyCrawler = new BLL.Crawlers.State_VA.VAWeeklyCrawler(null, "http://www.fairfaxcounty.gov/police/crime/arrest.txt");
-            //vaWeeklyCrawler.StartCrawling();
             Crawlers.DataCrawler.InitiateCrawling();
             return true;
         }
+
+        #endregion
     }
 }
