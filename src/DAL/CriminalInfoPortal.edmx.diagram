@@ -26,7 +26,9 @@
         <AssociationConnector Association="CrimePortalModel.FK_CriminalRecordSource_StateId" />
         <EntityTypeShape EntityType="CrimePortalModel.CriminalActivityRecord" Width="1.5" PointX="8.375" PointY="7" />
         <AssociationConnector Association="CrimePortalModel.FK_LastProcessedCriminalRecord" />
-        <EntityTypeShape EntityType="CrimePortalModel.CriminalActivityRecordDetailView" Width="1.5" PointX="8.125" PointY="10.875" />
+        <EntityTypeShape EntityType="CrimePortalModel.CriminalEventType" Width="1.5" PointX="5.5" PointY="6.75" />
+        <EntityTypeShape EntityType="CrimePortalModel.UserEventTypePreference" Width="1.5" PointX="5.5" PointY="8.625" />
+        <EntityTypeShape EntityType="CrimePortalModel.CriminalActivityRecordDetailView" Width="1.5" PointX="8" PointY="10.875" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,7 +18,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("CrimePortalModel", "FK_LastProcessedCriminalRecord", "CriminalActivityRecord", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.CriminalActivityRecord), "CriminalRecordSource", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.CriminalRecordSource))]
 
 // Original file name:
-// Generation date: 4/5/2015 11:25:12 PM
+// Generation date: 4/7/2015 11:47:29 PM
 namespace DAL
 {
     
@@ -291,6 +291,40 @@ namespace DAL
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         private global::System.Data.Objects.ObjectQuery<CriminalActivityRecord> _CriminalActivityRecords;
         /// <summary>
+        /// There are no comments for CriminalEventTypes in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<CriminalEventType> CriminalEventTypes
+        {
+            get
+            {
+                if ((this._CriminalEventTypes == null))
+                {
+                    this._CriminalEventTypes = base.CreateQuery<CriminalEventType>("[CriminalEventTypes]");
+                }
+                return this._CriminalEventTypes;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<CriminalEventType> _CriminalEventTypes;
+        /// <summary>
+        /// There are no comments for UserEventTypePreferences in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<UserEventTypePreference> UserEventTypePreferences
+        {
+            get
+            {
+                if ((this._UserEventTypePreferences == null))
+                {
+                    this._UserEventTypePreferences = base.CreateQuery<UserEventTypePreference>("[UserEventTypePreferences]");
+                }
+                return this._UserEventTypePreferences;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<UserEventTypePreference> _UserEventTypePreferences;
+        /// <summary>
         /// There are no comments for CriminalActivityRecordDetailViews in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
@@ -418,6 +452,22 @@ namespace DAL
         public void AddToCriminalActivityRecords(CriminalActivityRecord criminalActivityRecord)
         {
             base.AddObject("CriminalActivityRecords", criminalActivityRecord);
+        }
+        /// <summary>
+        /// There are no comments for CriminalEventTypes in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddToCriminalEventTypes(CriminalEventType criminalEventType)
+        {
+            base.AddObject("CriminalEventTypes", criminalEventType);
+        }
+        /// <summary>
+        /// There are no comments for UserEventTypePreferences in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddToUserEventTypePreferences(UserEventTypePreference userEventTypePreference)
+        {
+            base.AddObject("UserEventTypePreferences", userEventTypePreference);
         }
         /// <summary>
         /// There are no comments for CriminalActivityRecordDetailViews in the schema.
@@ -3452,14 +3502,16 @@ namespace DAL
         /// <param name="chargeCode">Initial value of ChargeCode.</param>
         /// <param name="address">Initial value of Address.</param>
         /// <param name="cityId">Initial value of CityId.</param>
+        /// <param name="criminalEventType">Initial value of CriminalEventType.</param>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public static CriminalActivityRecord CreateCriminalActivityRecord(long recordId, string chargeCode, string address, int cityId)
+        public static CriminalActivityRecord CreateCriminalActivityRecord(long recordId, string chargeCode, string address, int cityId, string criminalEventType)
         {
             CriminalActivityRecord criminalActivityRecord = new CriminalActivityRecord();
             criminalActivityRecord.RecordId = recordId;
             criminalActivityRecord.ChargeCode = chargeCode;
             criminalActivityRecord.Address = address;
             criminalActivityRecord.CityId = cityId;
+            criminalActivityRecord.CriminalEventType = criminalEventType;
             return criminalActivityRecord;
         }
         /// <summary>
@@ -3760,6 +3812,33 @@ namespace DAL
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnCountyIdChanged();
         /// <summary>
+        /// There are no comments for property CriminalEventType in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string CriminalEventType
+        {
+            get
+            {
+                return this._CriminalEventType;
+            }
+            set
+            {
+                this.OnCriminalEventTypeChanging(value);
+                this.ReportPropertyChanging("CriminalEventType");
+                this._CriminalEventType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("CriminalEventType");
+                this.OnCriminalEventTypeChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _CriminalEventType;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCriminalEventTypeChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCriminalEventTypeChanged();
+        /// <summary>
         /// There are no comments for CriminalRecordSources in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("CrimePortalModel", "FK_LastProcessedCriminalRecord", "CriminalRecordSource")]
@@ -3783,6 +3862,165 @@ namespace DAL
         }
     }
     /// <summary>
+    /// There are no comments for CrimePortalModel.CriminalEventType in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// TypeId
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="CrimePortalModel", Name="CriminalEventType")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class CriminalEventType : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new CriminalEventType object.
+        /// </summary>
+        /// <param name="typeId">Initial value of TypeId.</param>
+        /// <param name="criminalEventType1">Initial value of CriminalEventType1.</param>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public static CriminalEventType CreateCriminalEventType(short typeId, string criminalEventType1)
+        {
+            CriminalEventType criminalEventType = new CriminalEventType();
+            criminalEventType.TypeId = typeId;
+            criminalEventType.CriminalEventType1 = criminalEventType1;
+            return criminalEventType;
+        }
+        /// <summary>
+        /// There are no comments for property TypeId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public short TypeId
+        {
+            get
+            {
+                return this._TypeId;
+            }
+            set
+            {
+                this.OnTypeIdChanging(value);
+                this.ReportPropertyChanging("TypeId");
+                this._TypeId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("TypeId");
+                this.OnTypeIdChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private short _TypeId;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnTypeIdChanging(short value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnTypeIdChanged();
+        /// <summary>
+        /// There are no comments for property CriminalEventType1 in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string CriminalEventType1
+        {
+            get
+            {
+                return this._CriminalEventType1;
+            }
+            set
+            {
+                this.OnCriminalEventType1Changing(value);
+                this.ReportPropertyChanging("CriminalEventType1");
+                this._CriminalEventType1 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("CriminalEventType1");
+                this.OnCriminalEventType1Changed();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _CriminalEventType1;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCriminalEventType1Changing(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCriminalEventType1Changed();
+    }
+    /// <summary>
+    /// There are no comments for CrimePortalModel.UserEventTypePreference in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// UserId
+    /// CriminalEventType
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="CrimePortalModel", Name="UserEventTypePreference")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class UserEventTypePreference : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new UserEventTypePreference object.
+        /// </summary>
+        /// <param name="userId">Initial value of UserId.</param>
+        /// <param name="criminalEventType">Initial value of CriminalEventType.</param>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public static UserEventTypePreference CreateUserEventTypePreference(long userId, string criminalEventType)
+        {
+            UserEventTypePreference userEventTypePreference = new UserEventTypePreference();
+            userEventTypePreference.UserId = userId;
+            userEventTypePreference.CriminalEventType = criminalEventType;
+            return userEventTypePreference;
+        }
+        /// <summary>
+        /// There are no comments for property UserId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public long UserId
+        {
+            get
+            {
+                return this._UserId;
+            }
+            set
+            {
+                this.OnUserIdChanging(value);
+                this.ReportPropertyChanging("UserId");
+                this._UserId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("UserId");
+                this.OnUserIdChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private long _UserId;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnUserIdChanging(long value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnUserIdChanged();
+        /// <summary>
+        /// There are no comments for property CriminalEventType in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string CriminalEventType
+        {
+            get
+            {
+                return this._CriminalEventType;
+            }
+            set
+            {
+                this.OnCriminalEventTypeChanging(value);
+                this.ReportPropertyChanging("CriminalEventType");
+                this._CriminalEventType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("CriminalEventType");
+                this.OnCriminalEventTypeChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _CriminalEventType;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCriminalEventTypeChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCriminalEventTypeChanged();
+    }
+    /// <summary>
     /// There are no comments for CrimePortalModel.CriminalActivityRecordDetailView in the schema.
     /// </summary>
     /// <KeyProperties>
@@ -3790,6 +4028,7 @@ namespace DAL
     /// ChargeCode
     /// Address
     /// CityId
+    /// CriminalEventType
     /// StateId
     /// StateCode
     /// StateName
@@ -3807,18 +4046,20 @@ namespace DAL
         /// <param name="chargeCode">Initial value of ChargeCode.</param>
         /// <param name="address">Initial value of Address.</param>
         /// <param name="cityId">Initial value of CityId.</param>
+        /// <param name="criminalEventType">Initial value of CriminalEventType.</param>
         /// <param name="stateId">Initial value of StateId.</param>
         /// <param name="stateCode">Initial value of StateCode.</param>
         /// <param name="stateName">Initial value of StateName.</param>
         /// <param name="countryCode">Initial value of CountryCode.</param>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public static CriminalActivityRecordDetailView CreateCriminalActivityRecordDetailView(long recordId, string chargeCode, string address, int cityId, int stateId, string stateCode, string stateName, string countryCode)
+        public static CriminalActivityRecordDetailView CreateCriminalActivityRecordDetailView(long recordId, string chargeCode, string address, int cityId, string criminalEventType, int stateId, string stateCode, string stateName, string countryCode)
         {
             CriminalActivityRecordDetailView criminalActivityRecordDetailView = new CriminalActivityRecordDetailView();
             criminalActivityRecordDetailView.RecordId = recordId;
             criminalActivityRecordDetailView.ChargeCode = chargeCode;
             criminalActivityRecordDetailView.Address = address;
             criminalActivityRecordDetailView.CityId = cityId;
+            criminalActivityRecordDetailView.CriminalEventType = criminalEventType;
             criminalActivityRecordDetailView.StateId = stateId;
             criminalActivityRecordDetailView.StateCode = stateCode;
             criminalActivityRecordDetailView.StateName = stateName;
@@ -4122,6 +4363,33 @@ namespace DAL
         partial void OnCountyIdChanging(global::System.Nullable<int> value);
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnCountyIdChanged();
+        /// <summary>
+        /// There are no comments for property CriminalEventType in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string CriminalEventType
+        {
+            get
+            {
+                return this._CriminalEventType;
+            }
+            set
+            {
+                this.OnCriminalEventTypeChanging(value);
+                this.ReportPropertyChanging("CriminalEventType");
+                this._CriminalEventType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("CriminalEventType");
+                this.OnCriminalEventTypeChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _CriminalEventType;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCriminalEventTypeChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCriminalEventTypeChanged();
         /// <summary>
         /// There are no comments for property CityName in the schema.
         /// </summary>

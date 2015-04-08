@@ -55,6 +55,14 @@
           <Property Name="DateReported" Type="date" />
           <Property Name="CityId" Type="int" Nullable="false" />
           <Property Name="CountyId" Type="int" />
+          <Property Name="CriminalEventType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CriminalEventType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CriminalEventType" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="CriminalRecordSource">
           <Key>
@@ -93,7 +101,7 @@
           <Property Name="Heading" Type="varchar" MaxLength="256" />
           <Property Name="Subheading" Type="varchar" MaxLength="256" />
           <Property Name="Description" Type="varchar" MaxLength="256" />
-          <Property Name="CriminalEventType" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="CriminalEventType" Type="varchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -114,6 +122,14 @@
           <Property Name="UserId" Type="bigint" Nullable="false" />
           <Property Name="AddressId" Type="bigint" Nullable="false" />
           <Property Name="IsPreferred" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserEventTypePreference">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="CriminalEventType" />
+          </Key>
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="CriminalEventType" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CrimePortal.dbo.CityDetailView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -158,6 +174,7 @@ warning 6002: The table/view 'CrimePortal.dbo.CriminalActivityRecordDetailView' 
             <PropertyRef Name="ChargeCode" />
             <PropertyRef Name="Address" />
             <PropertyRef Name="CityId" />
+            <PropertyRef Name="CriminalEventType" />
             <PropertyRef Name="StateId" />
             <PropertyRef Name="StateCode" />
             <PropertyRef Name="StateName" />
@@ -174,6 +191,7 @@ warning 6002: The table/view 'CrimePortal.dbo.CriminalActivityRecordDetailView' 
           <Property Name="DateReported" Type="date" />
           <Property Name="CityId" Type="int" Nullable="false" />
           <Property Name="CountyId" Type="int" />
+          <Property Name="CriminalEventType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CityName" Type="nvarchar" MaxLength="255" />
           <Property Name="StateId" Type="int" Nullable="false" />
           <Property Name="StateCode" Type="varchar" MaxLength="2" Nullable="false" />
@@ -317,17 +335,22 @@ warning 6002: The table/view 'CrimePortal.dbo.UserAddressDetailView' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_UserPreferenceCriminalEventType' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_UserPreferenceCriminalEventType" />-->
         <EntityContainer Name="CrimePortalModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="County" EntityType="Self.County" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CriminalActivityRecord" EntityType="Self.CriminalActivityRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CriminalEventType" EntityType="Self.CriminalEventType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CriminalRecordSource" EntityType="Self.CriminalRecordSource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StateCriminalCodeDomain" EntityType="Self.StateCriminalCodeDomain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAddress" EntityType="Self.UserAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserEventTypePreference" EntityType="Self.UserEventTypePreference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CityDetailView" EntityType="Self.CityDetailView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [CityDetailView].[CityID] AS [CityID], 
@@ -362,6 +385,7 @@ FROM [dbo].[CountyDetailView] AS [CountyDetailView]</DefiningQuery>
 [CriminalActivityRecordDetailView].[DateReported] AS [DateReported], 
 [CriminalActivityRecordDetailView].[CityId] AS [CityId], 
 [CriminalActivityRecordDetailView].[CountyId] AS [CountyId], 
+[CriminalActivityRecordDetailView].[CriminalEventType] AS [CriminalEventType], 
 [CriminalActivityRecordDetailView].[CityName] AS [CityName], 
 [CriminalActivityRecordDetailView].[StateId] AS [StateId], 
 [CriminalActivityRecordDetailView].[StateCode] AS [StateCode], 
@@ -481,6 +505,8 @@ FROM [dbo].[UserAddressDetailView] AS [UserAddressDetailView]</DefiningQuery>
             <End Role="CriminalActivityRecord" EntitySet="CriminalActivityRecords" />
             <End Role="CriminalRecordSource" EntitySet="CriminalRecordSources" />
           </AssociationSet>
+          <EntitySet Name="CriminalEventTypes" EntityType="CrimePortalModel.CriminalEventType" />
+          <EntitySet Name="UserEventTypePreferences" EntityType="CrimePortalModel.UserEventTypePreference" />
           <EntitySet Name="CriminalActivityRecordDetailViews" EntityType="CrimePortalModel.CriminalActivityRecordDetailView" />
           </EntityContainer>
         <EntityType Name="Address">
@@ -682,7 +708,7 @@ FROM [dbo].[UserAddressDetailView] AS [UserAddressDetailView]</DefiningQuery>
           <Property Type="String" Name="Heading" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Subheading" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="CriminalEventType" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CriminalEventType" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CriminalRecordSource">
           <Key>
@@ -719,17 +745,34 @@ FROM [dbo].[UserAddressDetailView] AS [UserAddressDetailView]</DefiningQuery>
           <Property Name="CityId" Type="Int32" Nullable="false" />
           <Property Name="CountyId" Type="Int32" />
           <NavigationProperty Name="CriminalRecordSources" Relationship="CrimePortalModel.FK_LastProcessedCriminalRecord" FromRole="CriminalActivityRecord" ToRole="CriminalRecordSource" />
+          <Property Name="CriminalEventType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_LastProcessedCriminalRecord">
           <End Type="CrimePortalModel.CriminalActivityRecord" Role="CriminalActivityRecord" Multiplicity="0..1" />
           <End Type="CrimePortalModel.CriminalRecordSource" Role="CriminalRecordSource" Multiplicity="*" />
         </Association>
+        <EntityType Name="CriminalEventType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CriminalEventType1" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserEventTypePreference">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="CriminalEventType" />
+          </Key>
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="CriminalEventType" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="CriminalActivityRecordDetailView">
           <Key>
             <PropertyRef Name="RecordId" />
             <PropertyRef Name="ChargeCode" />
             <PropertyRef Name="Address" />
             <PropertyRef Name="CityId" />
+            <PropertyRef Name="CriminalEventType" />
             <PropertyRef Name="StateId" />
             <PropertyRef Name="StateCode" />
             <PropertyRef Name="StateName" />
@@ -746,6 +789,7 @@ FROM [dbo].[UserAddressDetailView] AS [UserAddressDetailView]</DefiningQuery>
           <Property Name="DateReported" Type="DateTime" Precision="0" />
           <Property Name="CityId" Type="Int32" Nullable="false" />
           <Property Name="CountyId" Type="Int32" />
+          <Property Name="CriminalEventType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="StateId" Type="Int32" Nullable="false" />
           <Property Name="StateCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
@@ -972,6 +1016,7 @@ FROM [dbo].[UserAddressDetailView] AS [UserAddressDetailView]</DefiningQuery>
           <EntitySetMapping Name="CriminalActivityRecords">
             <EntityTypeMapping TypeName="CrimePortalModel.CriminalActivityRecord">
               <MappingFragment StoreEntitySet="CriminalActivityRecord">
+                <ScalarProperty Name="CriminalEventType" ColumnName="CriminalEventType" />
                 <ScalarProperty Name="CountyId" ColumnName="CountyId" />
                 <ScalarProperty Name="CityId" ColumnName="CityId" />
                 <ScalarProperty Name="DateReported" ColumnName="DateReported" />
@@ -995,6 +1040,22 @@ FROM [dbo].[UserAddressDetailView] AS [UserAddressDetailView]</DefiningQuery>
             </EndProperty>
             <Condition ColumnName="LastAccessRecordId" IsNull="false" />
           </AssociationSetMapping>
+          <EntitySetMapping Name="CriminalEventTypes">
+            <EntityTypeMapping TypeName="CrimePortalModel.CriminalEventType">
+              <MappingFragment StoreEntitySet="CriminalEventType">
+                <ScalarProperty Name="CriminalEventType1" ColumnName="CriminalEventType" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEventTypePreferences">
+            <EntityTypeMapping TypeName="CrimePortalModel.UserEventTypePreference">
+              <MappingFragment StoreEntitySet="UserEventTypePreference">
+                <ScalarProperty Name="CriminalEventType" ColumnName="CriminalEventType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CriminalActivityRecordDetailViews">
             <EntityTypeMapping TypeName="CrimePortalModel.CriminalActivityRecordDetailView">
               <MappingFragment StoreEntitySet="CriminalActivityRecordDetailView">
@@ -1003,6 +1064,7 @@ FROM [dbo].[UserAddressDetailView] AS [UserAddressDetailView]</DefiningQuery>
                 <ScalarProperty Name="StateCode" ColumnName="StateCode" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CriminalEventType" ColumnName="CriminalEventType" />
                 <ScalarProperty Name="CountyId" ColumnName="CountyId" />
                 <ScalarProperty Name="CityId" ColumnName="CityId" />
                 <ScalarProperty Name="DateReported" ColumnName="DateReported" />
