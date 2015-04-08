@@ -415,7 +415,7 @@ namespace BLL
                 var cardViewList = objDAO.CriminalActivityRecordDetailViews.Where(c => c.CityId == cId);
 
                 if (cardViewList != null && cardViewList.Count() > 0)
-                    return cardViewList.ToArray();
+                    return cardViewList.OrderByDescending(c=>c.DateArrested).ToArray();
             }
 
             return new CriminalActivityRecordDetailView[0];
@@ -433,10 +433,7 @@ namespace BLL
                 var cardViewList = objDAO.CriminalActivityRecordDetailViews.Where(c => c.StateId == sId
                                                                                     && c.CityName == CityName);
                 if (cardViewList != null && cardViewList.Count() > 0)
-                    return cardViewList.ToArray();
-
-                if (cardViewList != null && cardViewList.Count() > 0)
-                    return cardViewList.ToArray();
+                    return cardViewList.OrderByDescending(c=>c.DateArrested).ToArray();
             }
 
             return new CriminalActivityRecordDetailView[0];
