@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">CrimeReport</string>
+    <string name="welcome">Welcome to Crime Info Portal</string>
+    <string name="report_button">report</string>
+    <string name="map_button">map</string>
+    <string name="twit_button">twits</string>
+    <string name="setting_button">setting</string>
+    <string name="footnote">Karki, Yanyan </string>
+    <string name="search_button">search</string>
+    <string name="date_button">date</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_twits">TwitsActivity</string>
+    <string name="title_activity_signup">Signup</string>
+</resources>
