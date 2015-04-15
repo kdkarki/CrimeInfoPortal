@@ -1,0 +1,10 @@
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\DAL\bin\Debug\DAL.dll.config
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\DAL\bin\Debug\DAL.dll
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\DAL\bin\Debug\DAL.pdb
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\DAL\obj\Debug\DAL.dll
+C:\Users\kkarki\Desktop\Personal\VTClasses\CS5614\Project\CrimeInfoPortal\src\DAL\obj\Debug\DAL.pdb
+C:\Users\kdkarki\Documents\VTClasses\CS5614\Project\CrimeInfoPortal\src\DAL\bin\Debug\DAL.dll.config
+C:\Users\kdkarki\Documents\VTClasses\CS5614\Project\CrimeInfoPortal\src\DAL\bin\Debug\DAL.dll
+C:\Users\kdkarki\Documents\VTClasses\CS5614\Project\CrimeInfoPortal\src\DAL\bin\Debug\DAL.pdb
+C:\Users\kdkarki\Documents\VTClasses\CS5614\Project\CrimeInfoPortal\src\DAL\obj\Debug\DAL.dll
+C:\Users\kdkarki\Documents\VTClasses\CS5614\Project\CrimeInfoPortal\src\DAL\obj\Debug\DAL.pdb

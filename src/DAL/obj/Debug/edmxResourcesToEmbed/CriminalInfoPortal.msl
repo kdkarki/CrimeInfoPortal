@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+  <EntityContainerMapping StorageEntityContainer="CrimePortalModelStoreContainer" CdmEntityContainer="CrimeInfoPortalDAO">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="CrimePortalModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="CrimePortalModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="CrimePortalModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Counties">
+      <EntityTypeMapping TypeName="CrimePortalModel.County">
+        <MappingFragment StoreEntitySet="County">
+          <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+          <ScalarProperty Name="County1" ColumnName="County" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CriminalActivityRecords">
+      <EntityTypeMapping TypeName="CrimePortalModel.CriminalActivityRecord">
+        <MappingFragment StoreEntitySet="CriminalActivityRecord">
+          <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="DateArrested" ColumnName="DateArrested" />
+          <ScalarProperty Name="ChargeCode" ColumnName="ChargeCode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="DateReported" ColumnName="DateReported" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CriminalRecordSources">
+      <EntityTypeMapping TypeName="CrimePortalModel.CriminalRecordSource">
+        <MappingFragment StoreEntitySet="CriminalRecordSource">
+          <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+          <ScalarProperty Name="BaseUrl" ColumnName="BaseUrl" />
+          <ScalarProperty Name="SchedulingFrequency" ColumnName="SchedulingFrequency" />
+          <ScalarProperty Name="LastAccessDate" ColumnName="LastAccessDate" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="IsOfficial" ColumnName="IsOfficial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="CrimePortalModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="CrimePortalModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAddresses">
+      <EntityTypeMapping TypeName="CrimePortalModel.UserAddress">
+        <MappingFragment StoreEntitySet="UserAddress">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="IsPreferred" ColumnName="IsPreferred" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_UserAddess_AddressId" TypeName="CrimePortalModel.FK_UserAddess_AddressId" StoreEntitySet="UserAddress">
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="AddressId" />
+      </EndProperty>
+      <EndProperty Name="UserAddress">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+        <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_City_StateId" TypeName="CrimePortalModel.FK_City_StateId" StoreEntitySet="City">
+      <EndProperty Name="State">
+        <ScalarProperty Name="StateID" ColumnName="StateID" />
+      </EndProperty>
+      <EndProperty Name="City">
+        <ScalarProperty Name="CityID" ColumnName="CityID" />
+      </EndProperty>
+      <Condition ColumnName="StateID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_CriminalActivity_City" TypeName="CrimePortalModel.FK_CriminalActivity_City" StoreEntitySet="CriminalActivityRecord">
+      <EndProperty Name="City">
+        <ScalarProperty Name="CityID" ColumnName="CityId" />
+      </EndProperty>
+      <EndProperty Name="CriminalActivityRecord">
+        <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+      </EndProperty>
+      <Condition ColumnName="CityId" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_State_Country" TypeName="CrimePortalModel.FK_State_Country" StoreEntitySet="State">
+      <EndProperty Name="Country">
+        <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+      </EndProperty>
+      <EndProperty Name="State">
+        <ScalarProperty Name="StateID" ColumnName="StateID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_CountyState" TypeName="CrimePortalModel.FK_CountyState" StoreEntitySet="County">
+      <EndProperty Name="State">
+        <ScalarProperty Name="StateID" ColumnName="StateID" />
+      </EndProperty>
+      <EndProperty Name="County">
+        <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_CriminalActivity_County" TypeName="CrimePortalModel.FK_CriminalActivity_County" StoreEntitySet="CriminalActivityRecord">
+      <EndProperty Name="County">
+        <ScalarProperty Name="CountyID" ColumnName="CountyId" />
+      </EndProperty>
+      <EndProperty Name="CriminalActivityRecord">
+        <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+      </EndProperty>
+      <Condition ColumnName="CountyId" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_LastProcessedCriminalRecord" TypeName="CrimePortalModel.FK_LastProcessedCriminalRecord" StoreEntitySet="CriminalRecordSource">
+      <EndProperty Name="CriminalActivityRecord">
+        <ScalarProperty Name="RecordId" ColumnName="LastAccessRecordId" />
+      </EndProperty>
+      <EndProperty Name="CriminalRecordSource">
+        <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+      </EndProperty>
+      <Condition ColumnName="LastAccessRecordId" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_UserAddess_UserId" TypeName="CrimePortalModel.FK_UserAddess_UserId" StoreEntitySet="UserAddress">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="UserAddress">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+        <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="CityDetailViews">
+      <EntityTypeMapping TypeName="CrimePortalModel.CityDetailView">
+        <MappingFragment StoreEntitySet="CityDetailView">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountyDetailViews">
+      <EntityTypeMapping TypeName="CrimePortalModel.CountyDetailView">
+        <MappingFragment StoreEntitySet="CountyDetailView">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StateCriminalCodeDomainDetailViews">
+      <EntityTypeMapping TypeName="CrimePortalModel.StateCriminalCodeDomainDetailView">
+        <MappingFragment StoreEntitySet="StateCriminalCodeDomainDetailView">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="CriminalEventType" ColumnName="CriminalEventType" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Subheading" ColumnName="Subheading" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="Sentence" ColumnName="Sentence" />
+          <ScalarProperty Name="Statute" ColumnName="Statute" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAddressDetailViews">
+      <EntityTypeMapping TypeName="CrimePortalModel.UserAddressDetailView">
+        <MappingFragment StoreEntitySet="UserAddressDetailView">
+          <ScalarProperty Name="IsPreferred" ColumnName="IsPreferred" />
+          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CriminalActivityRecordDetailViews">
+      <EntityTypeMapping TypeName="CrimePortalModel.CriminalActivityRecordDetailView">
+        <MappingFragment StoreEntitySet="CriminalActivityRecordDetailView">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="DateReported" ColumnName="DateReported" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ChargeCode" ColumnName="ChargeCode" />
+          <ScalarProperty Name="DateArrested" ColumnName="DateArrested" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StateCriminalCodeDomains">
+      <EntityTypeMapping TypeName="CrimePortalModel.StateCriminalCodeDomain">
+        <MappingFragment StoreEntitySet="StateCriminalCodeDomain">
+          <ScalarProperty Name="CriminalEventType" ColumnName="CriminalEventType" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Subheading" ColumnName="Subheading" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="Sentence" ColumnName="Sentence" />
+          <ScalarProperty Name="Statute" ColumnName="Statute" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
