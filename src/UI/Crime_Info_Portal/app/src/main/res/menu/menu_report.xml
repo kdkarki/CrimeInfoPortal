@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.nyy.crime_info_portal.ReportActivity">
+    <item
+        android:id="@+id/changeAddr"
+        android:title="Change address"/>
+    <item
+        android:id="@+id/changeType"
+        android:title="Change Crime Type"/>
+    <item
+        android:id="@+id/changePwd"
+        android:title="Change Password"/>
+</menu>
