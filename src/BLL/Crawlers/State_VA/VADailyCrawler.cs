@@ -14,6 +14,7 @@ namespace BLL.Crawlers
 
         public override List<DAL.CriminalActivityRecord> StartCrawling()
         {
+            return new List<DAL.CriminalActivityRecord>();
             throw new NotImplementedException();
         }
     }

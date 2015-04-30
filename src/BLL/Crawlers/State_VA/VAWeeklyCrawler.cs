@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Net;
+using System.Text;
 
 namespace BLL.Crawlers
 {
@@ -50,6 +51,8 @@ namespace BLL.Crawlers
                 using (DAL.CrimeInfoPortalDAO dao = new DAL.CrimeInfoPortalDAO())
                 {
                     var cityList = dao.Cities.Where(c => c.State.StateID == _stateId).OrderBy(c => c.Name);
+                    var stateCriminalCodeDomainList = dao.StateCriminalCodeDomains.Where(scd => scd.StateId == 51);
+                                
                     foreach (string cRecord in recordsStringArray)
                     {
                         if (String.IsNullOrWhiteSpace(cRecord) || cRecord.Length < 210) continue;
@@ -97,6 +100,52 @@ namespace BLL.Crawlers
                                 continue;
                             }
 
+                            string criminalEventType = "Other";                            
+                            if(stateCriminalCodeDomainList != null && stateCriminalCodeDomainList.Count() > 0)
+                            {
+                                string ceventType = String.Empty;
+                                if(charge.Contains('[') && charge.Contains(']') && charge.IndexOf('[') < charge.IndexOf(']'))
+                                {
+                                    try
+                                    {
+                                        string cCode = charge.Substring(charge.IndexOf('[') + 1, charge.Length - (2+charge.IndexOf('[')));
+                                        if (cCode.Length > 0)
+                                        {
+                                            for (int i = charge.Length; i > 3; i--)
+                                            {
+                                                var stateCriminalCodeDomain
+                                                    = stateCriminalCodeDomainList.FirstOrDefault(sccd => sccd.Statute.ToUpper().StartsWith(cCode.ToUpper().Substring(0, i)));
+                                                if (stateCriminalCodeDomain != null)
+                                                {
+                                                    ceventType = stateCriminalCodeDomain.CriminalEventType;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    catch { }
+                                }
+                                else
+                                {
+                                    try
+                                    {
+                                        for (int i = charge.Length; i > 3; i--)
+                                        {
+                                            var stateCriminalCodeDomain
+                                                 = stateCriminalCodeDomainList.FirstOrDefault(sccd => sccd.Statute.ToUpper().StartsWith(charge.ToUpper().Substring(0, i)));
+                                            if (stateCriminalCodeDomain != null)
+                                            {
+                                                ceventType = stateCriminalCodeDomain.CriminalEventType;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    catch { }
+                                }
+
+                                if (!String.IsNullOrEmpty(ceventType))
+                                    criminalEventType = ceventType;
+                            }
                             short intAge = 0;
                             DAL.CriminalActivityRecord car = new DAL.CriminalActivityRecord()
                                                             {
@@ -107,7 +156,8 @@ namespace BLL.Crawlers
                                                                 DateArrested = DateTime.Parse(dateArrested),
                                                                 ChargeCode = charge,
                                                                 Address = address,
-                                                                CityId = city.CityID 
+                                                                CityId = city.CityID,
+                                                                CriminalEventType = criminalEventType
                                                             };
                             recordList.Add(car);
                         }
